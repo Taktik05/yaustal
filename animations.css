@@ -1,0 +1,275 @@
+/* Анимации и переходы для сайта "Проблема адаптации" */
+
+/* Базовые анимации */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(25px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes modalFade {
+    from { 
+        opacity: 0; 
+        transform: translateY(-60px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(221, 96, 60, 0.3);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 6px 20px rgba(221, 96, 60, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(221, 96, 60, 0.3);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Классы анимаций */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Анимации для элементов при наведении */
+.cta-button:hover {
+    background: #c75536;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(221, 96, 60, 0.4);
+}
+
+.cta-button.pulse {
+    animation: pulse 2s infinite;
+}
+
+.student-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.case-button:hover {
+    background: var(--accent-color);
+    color: var(--secondary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(221, 96, 60, 0.15);
+}
+
+.case-button:hover .case-number {
+    color: var(--secondary-color);
+}
+
+.case-button:hover .case-title {
+    color: var(--secondary-color);
+}
+
+.case-button:hover .case-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+    background: var(--light-bg);
+    transform: rotate(90deg);
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+.contact-phone:hover {
+    color: #ff8c6b;
+    transform: scale(1.05);
+}
+
+/* Анимация для модального окна */
+.modal-content {
+    animation: modalFade 0.4s ease-out;
+}
+
+/* Анимация для логотипа */
+.logo::before {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Анимация для карточек при появлении */
+.case-button, .stat-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.case-button.animated, .stat-card.animated {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Задержки для последовательного появления */
+.case-button:nth-child(1) { animation-delay: 0.1s; }
+.case-button:nth-child(2) { animation-delay: 0.2s; }
+.case-button:nth-child(3) { animation-delay: 0.3s; }
+.case-button:nth-child(4) { animation-delay: 0.4s; }
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Анимация для иконок в кейсах */
+.case-number {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.case-button:hover .case-number {
+    animation: bounce 1s;
+}
+
+/* Анимация для фото студентов */
+.student-photo {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Анимация для шапки при скролле */
+header.scrolled {
+    background: rgba(88, 88, 86, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Анимация для активного пункта меню */
+nav a.active {
+    animation: pulse 2s infinite;
+}
+
+/* Анимация для статистики при прокрутке */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-number.animated {
+    animation: countUp 1s ease-out forwards;
+}
+
+/* Анимация загрузки */
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: loading 1s linear infinite;
+}
+
+/* Анимация для подчеркивания */
+@keyframes underline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.content-section h2::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    margin-top: 5px;
+    animation: underline 0.8s ease-out forwards;
+}
+
+/* Плавные переходы */
+.cta-button,
+.case-button,
+.student-photo,
+.stat-card,
+.footer-links a,
+.contact-phone,
+.close-modal,
+nav a {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
