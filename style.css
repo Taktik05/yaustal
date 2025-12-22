@@ -35,7 +35,7 @@ h1, h2, h3, h4, .logo, .case-title, .modal-content h2 {
 header {
     background: var(--primary-color);
     color: var(--secondary-color);
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,19 +53,19 @@ header {
 .logo {
     display: flex;
     align-items: center;
-
+    gap: 15px;
 }
 
-.logo::before {
-    content: "";
-    width: 40px;
-    height: 40px;
-    margin-right: 12px;
-    background-image: url('https://taktik05.github.io/yaustal/Рисунок1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: inline-block;
+.header-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
 }
 
 nav a {
@@ -87,12 +87,36 @@ nav a:hover {
 
 /* Главный баннер */
 .hero {
-    background: linear-gradient(rgba(88, 88, 86, 0.85), rgba(88, 88, 86, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(rgba(88, 88, 86, 0.85), rgba(88, 88, 86, 0.9));
     background-size: cover;
     background-position: center;
-    text-align: center;
-    padding: 7rem 2rem;
+    padding: 5rem 2rem;
     color: var(--secondary-color);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 4rem;
+}
+
+.hero-logo {
+    flex: 0 0 300px;
+}
+
+.hero-logo-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
 }
 
 .hero h1 { 
@@ -135,10 +159,18 @@ nav a:hover {
     max-width: 1200px;
     margin: 5rem auto;
     padding: 0 2.5rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
     align-items: start;
+}
+
+/* Контейнер для введения */
+.intro-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.intro-text {
+    flex: 1;
 }
 
 .intro-text h2 {
@@ -163,18 +195,43 @@ nav a:hover {
     font-weight: 500;
 }
 
-.intro-images {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
-    margin-top: 1rem;
+/* Логотип справа */
+.intro-logo-right {
+    flex-shrink: 0;
+    width: 250px;
+    margin-top: 50px;
 }
 
-.student-photo {
+.intro-logo-image {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    border: 1px solid var(--border-color);
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.intro-logo-image:hover {
+    transform: scale(1.05);
+}
+
+/* Картинка после текста */
+.intro-image-after-text {
+    margin: 2rem 0;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.intro-image-after-text .large-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+}
+
+.intro-image-after-text .large-photo:hover {
+    transform: scale(1.02);
 }
 
 /* Кейсы */
@@ -470,6 +527,20 @@ footer {
         height: 110px;
     }
     
+    .logo {
+        justify-content: center;
+        margin-bottom: 1rem;
+        gap: 10px;
+    }
+    
+    .header-logo {
+        height: 40px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
     nav { 
         margin-top: 1rem;
         display: flex;
@@ -485,21 +556,63 @@ footer {
     }
     
     .hero { 
-        padding: 5rem 1.5rem;
+        padding: 3rem 1.5rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .hero-logo {
+        flex: 0 0 150px;
+    }
+    
+    .hero-logo-image {
+        max-width: 150px;
+    }
+    
+    .hero-text {
+        text-align: center;
     }
     
     .hero h1 { 
-        font-size: 2.3rem; 
+        font-size: 2rem; 
     }
     
     .hero p {
         font-size: 1.1rem;
     }
     
-    .introduction {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+    .intro-container {
+        flex-direction: column;
+        gap: 2rem;
         padding: 0 1.5rem;
+    }
+    
+    .intro-logo-right {
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    .intro-logo-image {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    .introduction {
+        padding: 0;
+    }
+    
+    .intro-text h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .intro-image-after-text {
+        margin: 1.5rem 0;
     }
     
     .content-section {
