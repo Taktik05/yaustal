@@ -273,3 +273,15 @@ nav a.active {
 nav a {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+/* Анимация для логотипов */
+.header-logo,
+.hero-logo-image,
+.intro-logo-image {
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover,
+.hero-logo-image:hover,
+.intro-logo-image:hover {
+    transform: scale(1.05);
+}
