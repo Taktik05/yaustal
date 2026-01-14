@@ -298,272 +298,732 @@
             </div>
             <!-- КОНЕЦ КОНТЕЙНЕРА ДЛЯ ВСЕХ ВИДЕО -->
         <!-- КОНЕЦ БЛОКА С ВИДЕО -->
-                    <!-- НАЧАЛО БЛОКА С ПСИХОЛОГИЧЕСКИМ ТЕСТОМ -->
-        <div class="quiz-section" id="adaptationQuiz" style="margin-top: 5rem; padding: 3.5rem; background: linear-gradient(135deg, #f9f9f9 0%, #f0f7ff 100%); border-radius: 18px; border-left: 6px solid var(--accent-color); box-shadow: 0 12px 35px rgba(88, 88, 86, 0.08);">
+           <!-- НАЧАЛО БЛОКА С ПОШАГОВЫМ ТЕСТОМ -->
+        <div class="quiz-section" id="stepQuiz" style="margin-top: 5rem; padding: 3.5rem; background: linear-gradient(135deg, #f9f9f9 0%, #f0f7ff 100%); border-radius: 18px; border-left: 6px solid var(--accent-color); box-shadow: 0 12px 35px rgba(88, 88, 86, 0.08);">
             
             <div class="quiz-header" style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-size: 2.3rem;">Психологический тест «Адаптация: Шаг в вуз»</h2>
                 <div class="quiz-subtitle" style="max-width: 900px; margin: 0 auto; padding: 1.5rem; background: rgba(255, 255, 255, 0.8); border-radius: 10px;">
-                    <p style="margin-bottom: 1rem; color: #585856; font-family: 'Inter', sans-serif; line-height: 1.7;"><strong>Цель:</strong> Оценить уровень и особенности адаптации студента-первокурсника по ключевым параметрам: учебная, социальная, личностная адаптация и самоорганизация.</p>
-                    <p style="color: #585856; font-family: 'Inter', sans-serif; line-height: 1.7; font-style: italic; border-left: 3px solid var(--accent-color); padding-left: 1rem;"><strong>Инструкция:</strong> Прочитайте каждое утверждение. Выберите вариант, который наилучшим образом отражает ваше состояние в течение последних 2-3 недель. Отвечайте искренне — здесь нет «правильных» или «неправильных» ответов.</p>
+                    <p style="margin-bottom: 1rem; color: #585856; font-family: 'Inter', sans-serif; line-height: 1.7;"><strong>Цель:</strong> Оценить уровень адаптации по 10 ключевым параметрам.</p>
+                    <p style="color: #585856; font-family: 'Inter', sans-serif; line-height: 1.7; font-style: italic; border-left: 3px solid var(--accent-color); padding-left: 1rem;"><strong>Инструкция:</strong> Вопросы будут появляться по одному. Отвечайте честно — результат для самопознания.</p>
                 </div>
             </div>
 
-            <!-- ФОРМА ТЕСТА -->
-            <form id="adaptationTestForm" style="max-width: 900px; margin: 0 auto;">
+            <!-- ПРОГРЕСС-БАР -->
+            <div class="quiz-progress" style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span id="currentQuestion" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--accent-color); font-size: 1.1rem;">Вопрос 1 из 10</span>
+                    <span id="progressPercent" style="font-family: 'Inter', sans-serif; color: #787878;">10%</span>
+                </div>
+                <div style="height: 10px; background: #e8e8e8; border-radius: 5px; overflow: hidden;">
+                    <div id="progressBar" style="height: 100%; background: var(--accent-color); width: 10%; border-radius: 5px; transition: width 0.5s ease;"></div>
+                </div>
+            </div>
+
+            <!-- КОНТЕЙНЕР ДЛЯ ВСЕХ 10 ВОПРОСОВ -->
+            <div class="questions-container" id="questionsContainer" style="max-width: 800px; margin: 0 auto; position: relative; min-height: 400px;">
                 
-                <!-- ВОПРОС 1 -->
-                <div class="question-block" data-question="1" style="margin-bottom: 2.5rem; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); border: 1px solid rgba(221, 96, 60, 0.1);">
+                <!-- ВОПРОС 1 (виден изначально) -->
+                <div class="question-step active-step" data-step="1" style="display: block; animation: fadeIn 0.6s ease; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
                     <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
                         <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">1</div>
                         <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Мне легко самостоятельно планировать свою учебную нагрузку (распределять время на лекции, семинары, подготовку дома).</h3>
                     </div>
-                    <div class="options-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem;">
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q1" value="1" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q1" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q1" value="2" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q1" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q1" value="3" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q1" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q1" value="4" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q1" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q1" value="5" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q1" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
                         </label>
                     </div>
                 </div>
 
-                <!-- ВОПРОС 2 (с негативной формулировкой) -->
-                <div class="question-block" data-question="2" data-inverse="true" style="margin-bottom: 2.5rem; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); border: 1px solid rgba(221, 96, 60, 0.1);">
+                <!-- ВОПРОС 2 (скрыт) -->
+                <div class="question-step" data-step="2" data-inverse="true" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
                     <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
                         <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">2</div>
                         <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я испытываю регулярный стресс или тревогу из-за учёбы в вузе.</h3>
                     </div>
                     <div style="background: #fff5f5; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #e74c3c;">
                         <p style="color: #c0392b; font-family: 'Inter', sans-serif; font-size: 0.9rem; margin: 0; display: flex; align-items: center;">
-                            <span style="font-weight: bold; margin-right: 6px;">⚠ Внимание:</span> Это вопрос с негативной формулировкой. При подсчёте его баллы будут инвертированы.
+                            <span style="font-weight: bold; margin-right: 6px;">⚠ Негативный вопрос:</span> Баллы будут инвертированы
                         </p>
                     </div>
-                    <div class="options-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem;">
-                        <!-- Те же варианты, но JS инвертирует баллы -->
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q2" value="1" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1→5 баллов</div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q2" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1→5 баллов</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q2" value="2" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2→4 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q2" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2→4 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q2" value="3" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q2" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q2" value="4" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4→2 балла</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q2" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4→2 балла</div>
+                            </div>
                         </label>
-                        <label class="option-label" style="display: block; padding: 1rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: center; position: relative;">
-                            <input type="radio" name="q2" value="5" style="position: absolute; opacity: 0; width: 0; height: 0;">
-                            <div class="option-text" style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
-                            <div class="option-value" style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5→1 балл</div>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q2" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5→1 балл</div>
+                            </div>
                         </label>
                     </div>
                 </div>
 
-                <!-- КНОПКИ УПРАВЛЕНИЯ -->
-                <div class="quiz-controls" style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid #e8e8e8;">
-                    <button type="button" id="calculateResults" style="padding: 1.1rem 2.5rem; background: var(--accent-color); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(221, 96, 60, 0.3);">Узнать результат</button>
-                    <button type="reset" style="padding: 1.1rem 2.5rem; background: #f0f0f0; color: var(--primary-color); border: 2px solid #ddd; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: all 0.3s;">Начать заново</button>
-                </div>
-            </form>
-
-            <!-- БЛОК РЕЗУЛЬТАТОВ (скрыт изначально) -->
-            <div id="quizResults" style="display: none; margin-top: 4rem; padding: 2.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-top: 6px solid var(--accent-color);">
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <h3 style="color: var(--primary-color); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem;">Ваши результаты адаптации</h3>
-                    <div id="resultScore" style="font-size: 3.5rem; font-weight: 800; color: var(--accent-color); font-family: 'Inter', sans-serif; margin: 1rem 0;">0</div>
-                    <div id="resultRange" style="font-size: 1.3rem; font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">из 50 баллов</div>
-                </div>
-                
-                <div id="resultMessage" style="padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
-                    <!-- Контент подставится через JavaScript -->
-                </div>
-                
-                <div class="result-details" style="background: #f9f9f9; padding: 1.8rem; border-radius: 12px;">
-                    <h4 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 1rem;">Как интерпретировать ваш результат:</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem;">
-                        <div class="range-info" style="padding: 1.2rem; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #27ae60;">
-                            <div style="font-weight: 700; color: #27ae60; font-family: 'Inter', sans-serif; margin-bottom: 0.5rem;">40-50 баллов</div>
-                            <div style="font-size: 0.95rem; color: #585856; font-family: 'Inter', sans-serif; line-height: 1.5;">Высокий уровень адаптации. Вы успешно справляетесь с переходом в вуз!</div>
-                        </div>
-                        <div class="range-info" style="padding: 1.2rem; background: #fff3e0; border-radius: 8px; border-left: 4px solid #f39c12;">
-                            <div style="font-weight: 700; color: #f39c12; font-family: 'Inter', sans-serif; margin-bottom: 0.5rem;">25-39 баллов</div>
-                            <div style="font-size: 0.95rem; color: #585856; font-family: 'Inter', sans-serif; line-height: 1.5;">Средний уровень адаптации. Адаптация идёт, но есть над чем поработать.</div>
-                        </div>
-                        <div class="range-info" style="padding: 1.2rem; background: #ffebee; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                            <div style="font-weight: 700; color: #e74c3c; font-family: 'Inter', sans-serif; margin-bottom: 0.5rem;">10-24 балла</div>
-                            <div style="font-size: 0.95rem; color: #585856; font-family: 'Inter', sans-serif; line-height: 1.5;">Низкий уровень адаптации. Вам нужна поддержка — обратитесь за помощью.</div>
-                        </div>
+                <!-- ВОПРОС 3 -->
+                <div class="question-step" data-step="3" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">3</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">У меня уже есть в вузе несколько человек, с которыми я могу комфортно общаться, помимо одногруппников.</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q3" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q3" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q3" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q3" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q3" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
                     </div>
                 </div>
+
+                <!-- ВОПРОС 4 -->
+                <div class="question-step" data-step="4" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">4</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Мне нравится атмосфера и методы обучения в моём вузе (формат лекций, отношение преподавателей).</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q4" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q4" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q4" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q4" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q4" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 5 (негативный) -->
+                <div class="question-step" data-step="5" data-inverse="true" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">5</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я чувствую себя одиноко или «не в своей тарелке» в новой студенческой среде.</h3>
+                    </div>
+                    <div style="background: #fff5f5; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #e74c3c;">
+                        <p style="color: #c0392b; font-family: 'Inter', sans-serif; font-size: 0.9rem; margin: 0; display: flex; align-items: center;">
+                            <span style="font-weight: bold; margin-right: 6px;">⚠ Негативный вопрос:</span> Баллы будут инвертированы
+                        </p>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q5" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1→5 баллов</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q5" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2→4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q5" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q5" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4→2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q5" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5→1 балл</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 6 -->
+                <div class="question-step" data-step="6" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">6</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я умею эффективно конспектировать лекции и работать с большими объёмами информации.</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q6" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q6" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q6" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q6" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q6" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 7 -->
+                <div class="question-step" data-step="7" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">7</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я чувствую, что моя жизнь сейчас насыщенна и интересна, даже несмотря на нагрузку.</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q7" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q7" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q7" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q7" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q7" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 8 (негативный) -->
+                <div class="question-step" data-step="8" data-inverse="true" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">8</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Мне сложно соблюдать режим дня (сон, питание, отдых) без внешнего контроля.</h3>
+                    </div>
+                    <div style="background: #fff5f5; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #e74c3c;">
+                        <p style="color: #c0392b; font-family: 'Inter', sans-serif; font-size: 0.9rem; margin: 0; display: flex; align-items: center;">
+                            <span style="font-weight: bold; margin-right: 6px;">⚠ Негативный вопрос:</span> Баллы будут инвертированы
+                        </p>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q8" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1→5 баллов</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q8" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2→4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q8" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q8" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4→2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q8" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5→1 балл</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 9 -->
+                <div class="question-step" data-step="9" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">9</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я понимаю, зачем мне нужны те предметы, которые я изучаю, и как они связаны с моей будущей профессией.</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q9" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q9" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q9" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q9" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q9" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВОПРОС 10 -->
+                <div class="question-step" data-step="10" style="display: none; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.04);">
+                    <div class="question-header" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div class="question-number" style="flex-shrink: 0; width: 40px; height: 40px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Inter', sans-serif; margin-right: 15px; font-size: 1.1rem;">10</div>
+                        <h3 style="color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 600; line-height: 1.4; margin: 0; padding-top: 8px;">Я легко могу обратиться за помощью к одногруппникам, куратору или преподавателю, если у меня возникли трудности.</h3>
+                    </div>
+                    <div class="options-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q10" value="1" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Совершенно не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">1 балл</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q10" value="2" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее не согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">2 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q10" value="3" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Затрудняюсь ответить</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">3 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q10" value="4" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Скорее согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">4 балла</div>
+                            </div>
+                        </label>
+                        <label class="step-option" style="display: flex; align-items: center; padding: 1.2rem; border: 2px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
+                            <input type="radio" name="q10" value="5" style="margin-right: 15px; width: 20px; height: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary-color); font-family: 'Inter', sans-serif;">Полностью согласен</div>
+                                <div style="font-size: 0.85rem; color: #787878; margin-top: 4px; font-family: 'Inter', sans-serif;">5 баллов</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="quiz-footer" style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px dashed #ddd; text-align: center;">
-                <p style="color: #787878; font-size: 0.9rem; font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto;">Этот тест — инструмент самодиагностики, а не клиническое заключение. Если результаты вас тревожат, обязательно обратитесь в психологическую службу вашего вуза.</p>
+            <!-- КНОПКИ НАВИГАЦИИ -->
+            <div class="navigation-buttons" style="display: flex; justify-content: space-between; max-width: 800px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #e8e8e8;">
+                <button type="button" id="prevBtn" style="padding: 1rem 2rem; background: #f0f0f0; color: var(--primary-color); border: 2px solid #ddd; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s; display: none;">← Назад</button>
+                <button type="button" id="nextBtn" style="padding: 1rem 2rem; background: var(--accent-color); color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-left: auto;">Далее →</button>
+                <button type="button" id="submitBtn" style="padding: 1rem 2rem; background: #27ae60; color: white; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s; display: none;">Узнать результат</button>
+            </div>
+
+            <!-- БЛОК РЕЗУЛЬТАТОВ -->
+            <div id="stepQuizResults" style="display: none; margin-top: 4rem; padding: 2.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08);">
+                <!-- Контент результатов будет подставляться через JS -->
             </div>
         </div>
-        <!-- КОНЕЦ БЛОКА С ПСИХОЛОГИЧЕСКИМ ТЕСТОМ -->
 
-        <!-- ДОБАВЬ ЭТОТ СКРИПТ В КОНЕЦ ФАЙЛА (перед </body>) -->
+        <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        .step-option:hover {
+            border-color: var(--accent-color);
+            background: rgba(221, 96, 60, 0.03);
+            transform: translateY(-2px);
+        }
+        
+        .step-option input[type="radio"]:checked {
+            accent-color: var(--accent-color);
+        }
+        
+        .step-option input[type="radio"]:checked ~ div {
+            color: var(--accent-color);
+        }
+        </style>
+
         <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('adaptationTestForm');
-            const calculateBtn = document.getElementById('calculateResults');
-            const resultsDiv = document.getElementById('quizResults');
-            const resultScore = document.getElementById('resultScore');
-            const resultRange = document.getElementById('resultRange');
-            const resultMessage = document.getElementById('resultMessage');
+            let currentStep = 1;
+            const totalSteps = 10;
+            const inverseQuestions = [2, 5, 8]; // Вопросы с инверсией
+            const answers = {}; // Храним ответы
             
-            // Вопросы с инвертированной шкалой (негативные)
-            const inverseQuestions = [2, 5, 8];
+            // Элементы
+            const currentQuestionEl = document.getElementById('currentQuestion');
+            const progressPercentEl = document.getElementById('progressPercent');
+            const progressBarEl = document.getElementById('progressBar');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const resultsDiv = document.getElementById('stepQuizResults');
             
-            // Стилизация выбранных вариантов
-            document.querySelectorAll('.option-label').forEach(label => {
-                const radio = label.querySelector('input[type="radio"]');
+            // Обновление прогресса
+            function updateProgress() {
+                const percent = Math.round((currentStep / totalSteps) * 100);
+                currentQuestionEl.textContent = `Вопрос ${currentStep} из ${totalSteps}`;
+                progressPercentEl.textContent = `${percent}%`;
+                progressBarEl.style.width = `${percent}%`;
                 
-                radio.addEventListener('change', function() {
-                    // Сброс стилей у всех вариантов этого вопроса
-                    const questionBlock = this.closest('.question-block');
-                    questionBlock.querySelectorAll('.option-label').forEach(l => {
-                        l.style.borderColor = '#e8e8e8';
-                        l.style.backgroundColor = 'white';
-                        l.style.boxShadow = 'none';
-                    });
-                    
-                    // Применение стилей к выбранному варианту
-                    if (this.checked) {
-                        label.style.borderColor = 'var(--accent-color)';
-                        label.style.backgroundColor = 'rgba(221, 96, 60, 0.05)';
-                        label.style.boxShadow = '0 3px 10px rgba(221, 96, 60, 0.1)';
-                    }
-                });
+                // Показываем/скрываем кнопки
+                prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+                nextBtn.style.display = currentStep < totalSteps ? 'block' : 'none';
+                submitBtn.style.display = currentStep === totalSteps ? 'block' : 'none';
+                
+                // Сохраняем ответ текущего вопроса
+                saveCurrentAnswer();
+            }
+            
+            // Сохраняем ответ текущего вопроса
+            function saveCurrentAnswer() {
+                const questionName = `q${currentStep}`;
+                const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+                if (selected) {
+                    answers[questionName] = parseInt(selected.value);
+                }
+            }
+            
+            // Переход к вопросу
+            function goToStep(step) {
+                // Анимация исчезновения текущего вопроса
+                const currentQuestion = document.querySelector(`.question-step[data-step="${currentStep}"]`);
+                if (currentQuestion) {
+                    currentQuestion.style.animation = 'fadeOut 0.4s ease';
+                    setTimeout(() => {
+                        currentQuestion.style.display = 'none';
+                        currentQuestion.style.animation = '';
+                        
+                        // Показываем следующий вопрос
+                        const nextQuestion = document.querySelector(`.question-step[data-step="${step}"]`);
+                        if (nextQuestion) {
+                            nextQuestion.style.display = 'block';
+                            nextQuestion.style.animation = 'fadeIn 0.6s ease';
+                            currentStep = step;
+                            updateProgress();
+                            
+                            // Восстанавливаем сохраненный ответ
+                            const savedAnswer = answers[`q${step}`];
+                            if (savedAnswer) {
+                                const radio = document.querySelector(`input[name="q${step}"][value="${savedAnswer}"]`);
+                                if (radio) radio.checked = true;
+                            }
+                        }
+                    }, 400);
+                }
+            }
+            
+            // Слушатели событий
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) goToStep(currentStep - 1);
             });
             
-            // Расчет результатов
-            calculateBtn.addEventListener('click', function() {
-                let totalScore = 0;
-                let allAnswered = true;
+            nextBtn.addEventListener('click', () => {
+                // Проверяем, выбран ли ответ
+                const questionName = `q${currentStep}`;
+                const selected = document.querySelector(`input[name="${questionName}"]:checked`);
                 
-                // Проверяем все 10 вопросов
-                for (let i = 1; i <= 10; i++) {
-                    const questionName = `q${i}`;
-                    const selected = form.querySelector(`input[name="${questionName}"]:checked`);
-                    
-                    if (!selected) {
+                if (!selected) {
+                    alert('Пожалуйста, выберите ответ перед продолжением.');
+                    return;
+                }
+                
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            submitBtn.addEventListener('click', calculateResults);
+            
+            // Расчет результатов
+            function calculateResults() {
+                // Сохраняем последний ответ
+                saveCurrentAnswer();
+                
+                // Проверяем, все ли вопросы отвечены
+                let allAnswered = true;
+                for (let i = 1; i <= totalSteps; i++) {
+                    if (!answers[`q${i}`]) {
                         allAnswered = false;
-                        // Подсвечиваем неотвеченный вопрос
-                        const questionBlock = document.querySelector(`[data-question="${i}"]`);
-                        if (questionBlock) {
-                            questionBlock.style.borderColor = '#e74c3c';
-                            questionBlock.style.boxShadow = '0 0 0 2px rgba(231, 76, 60, 0.1)';
-                            
-                            // Возвращаем стиль через 2 секунды
-                            setTimeout(() => {
-                                questionBlock.style.borderColor = 'rgba(221, 96, 60, 0.1)';
-                                questionBlock.style.boxShadow = '0 6px 18px rgba(0,0,0,0.04)';
-                            }, 2000);
-                        }
+                        // Возвращаемся к неотвеченному вопросу
+                        goToStep(i);
+                        alert(`Пожалуйста, ответьте на вопрос ${i}`);
                         break;
                     }
-                    
-                    let value = parseInt(selected.value);
+                }
+                
+                if (!allAnswered) return;
+                
+                // Подсчет баллов
+                let totalScore = 0;
+                for (let i = 1; i <= totalSteps; i++) {
+                    let value = answers[`q${i}`];
                     
                     // Инвертируем баллы для негативных вопросов
                     if (inverseQuestions.includes(i)) {
-                        value = 6 - value; // Инверсия: 1→5, 2→4, 3→3, 4→2, 5→1
+                        value = 6 - value; // 1→5, 2→4, 3→3, 4→2, 5→1
                     }
                     
                     totalScore += value;
                 }
                 
-                if (!allAnswered) {
-                    alert('Пожалуйста, ответьте на все вопросы перед подсчётом результатов.');
-                    return;
-                }
-                
-                // Отображение результатов
-                resultScore.textContent = totalScore;
-                resultRange.textContent = `из 50 баллов`;
-                
-                let message = '';
-                let bgColor = '';
-                let textColor = '';
+                // Формируем результат
+                let resultHTML = '';
+                let resultColor = '';
                 
                 if (totalScore >= 40) {
-                    message = `<h4 style="color: #27ae60; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Высокий уровень адаптации</h4>
-                              <p style="color: #585856; line-height: 1.6; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Поздравляем! Вы успешно справляетесь с переходом в вуз. Вы хорошо организованы, активно встраиваетесь в новую социальную среду и видите смысл в учёбе. Ваш эмоциональный фон позитивный.</p>
-                              <p style="color: #585856; line-height: 1.6; font-family: 'Inter', sans-serif;"><strong>Рекомендация:</strong> Используйте эту уверенность для постановки более амбициозных академических или внеучебных целей (наука, проекты, стажировки).</p>`;
-                    bgColor = '#e8f5e9';
-                    textColor = '#27ae60';
+                    resultHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 3.5rem; font-weight: 800; color: #27ae60; margin: 1rem 0;">${totalScore}</div>
+                            <div style="font-size: 1.3rem; color: var(--primary-color); margin-bottom: 1.5rem;">из 50 баллов</div>
+                            <h3 style="color: #27ae60; font-family: 'Playfair Display', serif;">Высокий уровень адаптации</h3>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;">Поздравляем! Вы успешно справляетесь с переходом в вуз. Продолжайте в том же духе!</p>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;">Используйте эту уверенность для постановки более амбициозных академических или внеучебных целей (наука, проекты, стажировки).</p>
+                        </div>
+                    `;
+                    resultColor = '#e8f5e9';
                 } else if (totalScore >= 25) {
-                    message = `<h4 style="color: #f39c12; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Средний (умеренный) уровень адаптации</h4>
-                              <p style="color: #585856; line-height: 1.6; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Адаптация идёт своим чередом, но есть над чем поработать. Вы сталкиваетесь с типичными для первокурсника трудностями: возможно, хаотичный график, сложности в поиске друзей или периодическая неуверенность. Это абсолютно нормальный этап.</p>
-                              <p style="color: #585856; line-height: 1.6; font-family: 'Inter', sans-serif;"><strong>Рекомендация:</strong> Сфокусируйтесь на самых проблемных зонах – попробуйте посетить куратора, записаться в студклуб или освоить техники тайм-менеджмента.</p>`;
-                    bgColor = '#fff3e0';
-                    textColor = '#f39c12';
+                    resultHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 3.5rem; font-weight: 800; color: #f39c12; margin: 1rem 0;">${totalScore}</div>
+                            <div style="font-size: 1.3rem; color: var(--primary-color); margin-bottom: 1.5rem;">из 50 баллов</div>
+                            <h3 style="color: #f39c12; font-family: 'Playfair Display', serif;">Средний уровень адаптации</h3>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;">Адаптация идёт, но есть над чем поработать. Это нормальный этап для первокурсника.</p>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;"><strong>Рекомендация:</strong> Сфокусируйтесь на самых проблемных зонах – попробуйте посетить куратора, записаться в студклуб или освоить техники тайм-менеджмента.</p>
+                        </div>
+                    `;
+                    resultColor = '#fff3e0';
                 } else {
-                    message = `<h4 style="color: #e74c3c; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Низкий уровень адаптации</h4>
-                              <p style="color: #585856; line-height: 1.6; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Переход даётся вам очень непросто. Вы можете чувствовать себя потерянным, одиноким, перегруженным и демотивированным. <strong>Важно:</strong> Это не означает, что вы «не подходите» для вуза. Это сигнал, что вам нужна поддержка и конкретные действия.</p>
-                              <p style="color: #585856; line-height: 1.6; font-family: 'Inter', sans-serif;"><strong>Срочная рекомендация:</strong> Не оставайтесь с этим один на один. Обратитесь за помощью: к куратору группы, в психологическую службу вашего вуза (тел. (3852) 503-485), к доверенному преподавателю или к студенческому совету. Они существуют именно для помощи в таких ситуациях.</p>`;
-                    bgColor = '#ffebee';
-                    textColor = '#e74c3c';
+                    resultHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 3.5rem; font-weight: 800; color: #e74c3c; margin: 1rem 0;">${totalScore}</div>
+                            <div style="font-size: 1.3rem; color: var(--primary-color); margin-bottom: 1.5rem;">из 50 баллов</div>
+                            <h3 style="color: #e74c3c; font-family: 'Playfair Display', serif;">Низкий уровень адаптации</h3>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;">Вам нужна поддержка – это не означает, что вы «не подходите» для вуза. Это сигнал, что вам нужна помощь.</p>
+                            <p style="color: #585856; line-height: 1.6; margin: 1.5rem 0;"><strong>Срочная рекомендация:</strong> Обратитесь в психологическую службу вашего вуза по телефону <strong>(3852) 503-485</strong> или к куратору группы.</p>
+                        </div>
+                    `;
+                    resultColor = '#ffebee';
                 }
                 
-                resultMessage.innerHTML = message;
-                resultMessage.style.backgroundColor = bgColor;
-                resultMessage.style.borderLeft = `4px solid ${textColor}`;
-                resultMessage.style.color = '#585856';
-                
-                // Показываем блок с результатами
+                // Показываем результаты
+                resultsDiv.innerHTML = resultHTML;
+                resultsDiv.style.backgroundColor = resultColor;
+                resultsDiv.style.borderLeft = '6px solid var(--accent-color)';
                 resultsDiv.style.display = 'block';
-                
-                // Прокрутка к результатам
-                resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
+                resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             
-            // Сброс формы
-            form.addEventListener('reset', function() {
-                resultsDiv.style.display = 'none';
-                document.querySelectorAll('.option-label').forEach(label => {
-                    label.style.borderColor = '#e8e8e8';
-                    label.style.backgroundColor = 'white';
-                    label.style.boxShadow = 'none';
-                });
-                document.querySelectorAll('.question-block').forEach(block => {
-                    block.style.borderColor = 'rgba(221, 96, 60, 0.1)';
-                    block.style.boxShadow = '0 6px 18px rgba(0,0,0,0.04)';
+            // Инициализация
+            updateProgress();
+            
+            // Добавляем стиль для выбранных ответов
+            document.querySelectorAll('.step-option input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Убираем все стили у всех опций этого вопроса
+                    const questionBlock = this.closest('.question-step');
+                    questionBlock.querySelectorAll('.step-option').forEach(option => {
+                        option.style.borderColor = '#e8e8e8';
+                        option.style.backgroundColor = 'white';
+                        option.style.boxShadow = 'none';
+                    });
+                    
+                    // Добавляем стиль к выбранной опции
+                    const label = this.closest('.step-option');
+                    label.style.borderColor = 'var(--accent-color)';
+                    label.style.backgroundColor = 'rgba(221, 96, 60, 0.05)';
+                    label.style.boxShadow = '0 3px 10px rgba(221, 96, 60, 0.1)';
                 });
             });
         });
         </script>
+        <!-- КОНЕЦ БЛОКА С ПОШАГОВЫМ ТЕСТОМ -->
     </section>
 
     <!-- Подвал -->
