@@ -224,10 +224,10 @@ nav a:hover {
 }
 
 .intro-image-after-text .large-photo {
-    width: 100%;
+    max-width: 250px;
     height: auto;
-    border-radius: 12px;
-    transition: transform 0.5s ease;
+    margin: 0 auto;
+    display: block;
 }
 
 .intro-image-after-text .large-photo:hover {
@@ -654,5 +654,6 @@ nav a.active {
     background-color: rgba(221, 96, 60, 0.15);
     color: var(--accent-color);
 }
+
 
 
