@@ -813,13 +813,15 @@ nav a.active {
     justify-content: center;
     background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
     border-radius: 10px 10px 0 0;
+    position: relative;
 }
 
 .team-photo img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%; /* Вместо width: 100% */
+    max-height: 100%; /* Вместо height: 100% */
     width: auto;
     height: auto;
+    object-fit: contain; /* Вместо cover - показывает фото полностью */
     border-radius: 6px;
     transition: transform 0.5s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -943,3 +945,4 @@ nav a.active {
         padding: 1.5rem;
     }
 }
+
