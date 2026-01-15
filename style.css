@@ -804,28 +804,35 @@ nav a.active {
     box-shadow: 0 6px 20px rgba(221, 96, 60, 0.3);
 }
 
-/* Стили для фотографий команды - ОДИНАКОВЫЙ РАЗМЕР */
 .team-photo {
     height: 280px;
-    overflow: hidden;
+    padding: 15px 15px 0 15px; /* Отступы сверху и по бокам */
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Выравниваем по верху */
     justify-content: center;
     background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
     border-radius: 10px 10px 0 0;
     position: relative;
 }
 
-.team-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.5s ease;
+.team-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
 }
 
-.team-card:hover .team-photo img {
-    transform: scale(1.05);
+.team-photo img {
+    width: 100%;
+    height: calc(100% - 15px); /* Учитываем паддинг сверху */
+    object-fit: cover;
+    object-position: center top; /* Фокус на верхней части (лица) */
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
 }
 
 /* Для мобильных */
@@ -942,5 +949,6 @@ nav a.active {
         padding: 1.5rem;
     }
 }
+
 
 
