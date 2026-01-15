@@ -654,6 +654,189 @@ nav a.active {
     background-color: rgba(221, 96, 60, 0.15);
     color: var(--accent-color);
 }
+/* Стили для интерактивных симптомов стресса */
+.stress-symptoms-container {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
 
+.symptom-card {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--light-bg);
+}
 
+.symptom-card:last-child {
+    border-bottom: none;
+}
 
+.symptom-btn {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--light-bg);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.symptom-btn:hover {
+    background: rgba(221, 96, 60, 0.05);
+    padding-left: 2.2rem;
+}
+
+.symptom-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.symptom-btn.active .symptom-icon {
+    transform: scale(1.2);
+}
+
+.symptom-btn.active .symptom-arrow {
+    transform: rotate(180deg);
+}
+
+.symptom-icon {
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+.symptom-title {
+    flex-grow: 1;
+}
+
+.symptom-arrow {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.symptom-content {
+    max-height: 0;
+    overflow: hidden;
+    background: white;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.symptom-content.active {
+    max-height: 500px;
+}
+
+.symptom-content-inner {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.symptom-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.symptom-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.symptom-image:hover img {
+    transform: scale(1.03);
+}
+
+.symptom-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--primary-color);
+}
+
+.symptom-text p:first-child {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+/* Адаптивность симптомов для мобильных */
+@media (max-width: 768px) {
+    .symptom-content-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .symptom-btn {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .symptom-content-inner {
+        padding: 1.5rem;
+    }
+    
+    .symptom-image {
+        order: -1;
+    }
+}
+/* Стили для секции "Наша команда" */
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.team-card:hover .team-photo img {
+    transform: scale(1.05);
+}
+
+.team-button:hover {
+    background: #c75536;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(221, 96, 60, 0.3);
+}
+
+/* Исправление для фотографий команды */
+.team-photo {
+    height: 320px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+    border-radius: 10px 10px 0 0;
+}
+
+.team-photo img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    transition: transform 0.5s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.team-card:hover .team-photo img {
+    transform: scale(1.05);
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .team-photo {
+        height: 280px;
+    }
+    
+    .team-photo img {
+        max-width: 85%;
+        max-height: 85%;
+    }
+}
