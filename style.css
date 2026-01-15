@@ -840,3 +840,106 @@ nav a.active {
         max-height: 85%;
     }
 }
+/* Стили для интерактивного чек-листа */
+.checklist-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.checklist-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid rgba(221, 96, 60, 0.2);
+}
+
+.checklist-header h4 {
+    color: var(--accent-color);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin: 0;
+}
+.checklist-items {
+    margin-bottom: 2rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem 0;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s;
+}
+
+.checklist-item:hover {
+    background: rgba(221, 96, 60, 0.03);
+    padding-left: 0.5rem;
+    border-radius: 8px;
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+
+.checklist-checkbox {
+    display: none;
+}
+
+.checkmark {
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checklist-checkbox:checked ~ .checkmark {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.checklist-checkbox:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checklist-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+    transition: all 0.3s;
+    flex-grow: 1;
+}
+
+.checklist-checkbox:checked ~ .checklist-text {
+    color: #888;
+    text-decoration: line-through;
+}
+/* Адаптивность для чек-листа */
+@media (max-width: 768px) {
+    .checklist-container {
+        padding: 1.5rem;
+    }
+}
