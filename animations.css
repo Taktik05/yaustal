@@ -285,3 +285,72 @@ nav a {
 .intro-logo-image:hover {
     transform: scale(1.05);
 }
+/* Анимации для симптомов стресса */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.symptom-content.active .symptom-content-inner {
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+.symptom-btn {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.symptom-btn:hover {
+    transform: translateX(5px);
+}
+/* Анимации для карточек команды */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.team-card {
+    animation: cardAppear 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.team-card:nth-child(1) { animation-delay: 0.1s; }
+.team-card:nth-child(2) { animation-delay: 0.2s; }
+.team-card:nth-child(3) { animation-delay: 0.3s; }
+.team-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Эффект при наведении на фотографию команды */
+.team-photo img {
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.team-card:hover .team-photo img {
+    filter: brightness(1.05);
+}
+
+/* Анимация появления всей секции */
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.team-section {
+    animation: sectionFadeIn 0.8s ease-out forwards;
+}
