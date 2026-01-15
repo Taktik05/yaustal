@@ -199,7 +199,59 @@ function initCTAPulse() {
         });
     }
 }
-
+// Функция для инициализации интерактивных симптомов стресса
+function initStressSymptoms() {
+    const symptomBtns = document.querySelectorAll('.symptom-btn');
+    
+    symptomBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const symptomCard = this.closest('.symptom-card');
+            const content = symptomCard.querySelector('.symptom-content');
+            
+            // Закрываем все открытые симптомы
+            document.querySelectorAll('.symptom-btn.active').forEach(activeBtn => {
+                if (activeBtn !== this) {
+                    activeBtn.classList.remove('active');
+                    activeBtn.closest('.symptom-card').querySelector('.symptom-content').classList.remove('active');
+                }
+            });
+            
+            // Открываем/закрываем текущий симптом
+            const isActive = this.classList.contains('active');
+            
+            if (isActive) {
+                this.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                this.classList.add('active');
+                content.classList.add('active');
+                
+                // Плавная прокрутка к открытому элементу
+                setTimeout(() => {
+                    symptomCard.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                }, 300);
+            }
+        });
+    });
+    
+    // Закрытие по клику вне области
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.symptom-card')) {
+            document.querySelectorAll('.symptom-btn.active, .symptom-content.active').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+    });
+    
+    // Открываем первый симптом по умолчанию
+    const firstSymptomBtn = document.querySelector('.symptom-btn');
+    if (firstSymptomBtn) {
+        firstSymptomBtn.click();
+    }
+}
 // Инициализация всех функций при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Сайт 'Проблема адаптации' загружен. Удачи в первом семестре!");
@@ -212,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCaseButtons();
     initModalClose();
     initCTAPulse();
+    initStressSymptoms();
     
     // Добавляем анимацию для логотипа
     const logo = document.querySelector('.logo');
