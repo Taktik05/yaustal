@@ -236,7 +236,119 @@ function initStressSymptoms() {
             }
         });
     });
+// Функция для инициализации чек-листа (упрощенная)
+function initChecklist() {
+    const checkboxes = document.querySelectorAll('.checklist-checkbox');
     
+    // Загружаем сохраненный прогресс из localStorage
+    loadChecklistProgress();
+    
+    // Обработчик для каждого чекбокса
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function() {
+            saveChecklistProgress();
+        });
+    });
+    
+    // Сохранение прогресса в localStorage
+    function saveChecklistProgress() {
+        const progress = [];
+        checkboxes.forEach((checkbox, index) => {
+            progress[index] = checkbox.checked;
+        });
+        localStorage.setItem('checklistProgress', JSON.stringify(progress));
+    }
+    
+    // Загрузка прогресса из localStorage
+    function loadChecklistProgress() {
+        const savedProgress = localStorage.getItem('checklistProgress');
+        if (savedProgress) {
+            const progress = JSON.parse(savedProgress);
+            checkboxes.forEach((checkbox, index) => {
+                if (progress[index]) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+    }
+}
+// Функция для показа уведомлений
+function showNotification(message, type) {
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = `checklist-notification ${type}`;
+    notification.innerHTML = `
+        <span class="notification-text">${message}</span>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // Стили для уведомления
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#27ae60' : '#e74c3c'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    `;
+    
+    // Анимация появления
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Добавляем уведомление на страницу
+    document.body.appendChild(notification);
+    
+    // Кнопка закрытия
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.style.cssText = `
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+    `;
+    
+    closeBtn.addEventListener('click', () => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    });
+    
+    // Автоматическое закрытие через 3 секунды
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }
+    }, 3000);
+}
     // Закрытие по клику вне области
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.symptom-card')) {
@@ -252,7 +364,6 @@ function initStressSymptoms() {
         firstSymptomBtn.click();
     }
 }
-// Инициализация всех функций при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Сайт 'Проблема адаптации' загружен. Удачи в первом семестре!");
     
@@ -265,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initModalClose();
     initCTAPulse();
     initStressSymptoms();
+    initChecklist();
     
     // Добавляем анимацию для логотипа
     const logo = document.querySelector('.logo');
